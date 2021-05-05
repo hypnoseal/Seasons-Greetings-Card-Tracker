@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Season's Greetings Card Tracker</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'card_tracker/custom_styles.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mountains+of+Christmas">
+    <link rel="stylesheet" type="text/css" href="{% static 'card_tracker/flags/freakflags.css' %}"/>
+
+    <!-- jQuery and JS bundle w/ Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h1 class="title">Season's Greetings Card Tracker</h1>
+            </div>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-md-1 text-center">
+            </div>
+            <div class="col-md-6 text-right">
+                <img src="{% static 'card_tracker/images/seasons_greetings_illustration.svg' %}">
+                <p class="welcome-text">Welcome to the tracking app for the Season's Greetings cards! Enter your ID code in the form to let me know that you've received it and to show you some cool stats.</p>
+            </div>
+            <div class="col-md-4">
+                <form action="/" method="post">
+                    <div class="form-group">
+                        {% csrf_token %}
+                        {{ form }}
+                        <small id="cardIDHelp" class="form-text text-muted">Enter the five digit code found on the little paper that was in your card and click "Find Card" to see your card's info!</small>
+                    </div>
+                    <button class="btn btn-primary" type="submit" value="card_id">Find Card</button>
+                </form>
+            </div>
+            <div class="col-md-1 text-center">
+            </div>
+        </div>
+        {% if error_message %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <h4 class="alert-heading">{{ error_message }}</h4>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endif %}
+        {% if warning_message %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <h4 class="alert-heading">{{ warning_message }}</h4>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endif %}
+        {% block section %}{% endblock %}
+        <div class="row">
+            <div class="col">
+                <h2 class="display-6">Statistics for All Cards Sent</h2>
+            </div>
+            <div class="w-100"></div>
+            <div class="card-deck mx-auto">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center"><span>Total Cards Sent</span></div>
+                    <div class="card-body align-items-center">
+                        <span class="card-statistic">{{  card_count }}</span><span class="card-unit"> cards</span>
+                    </div>
+                    <div class="card-footer text-muted">The total number of cards that were sent.</div>
+                </div>
+                <div class="card">
+                    <div class="card-header d-flex align-items-center"><span>Total Distance</span></div>
+                    <div class="card-body align-items-center">
+                        <span class="card-statistic">{{  total_distance }}</span><span class="card-unit"> km</span>
+                    </div>
+                    <div class="card-footer text-muted">The total distance that all the cards have travelled.</div>
+                </div>
+                <div class="card">
+                    <div class="card-header d-flex align-items-center"><span>Furthest Distance</span></div>
+                    <div class="card-body align-items-center">
+                        <span class="card-statistic">{{  furthest_travelled }}</span><span class="card-unit"> km</span>
+                    </div>
+                    <div class="card-footer text-muted">The furthest distance that a card travelled.</div>
+                </div>
+                <div class="card">
+                    <div class="card-header d-flex align-items-center"><span>Average Distance</span></div>
+                    <div class="card-body align-items-center">
+                        <span class="card-statistic">{{  average_distance }}</span><span class="card-unit"> km</span>
+                    </div>
+                    <div class="card-footer text-muted">The average distance that a card travelled.</div>
+                </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="card-deck mx-auto">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center"><span>Recipient Countries</span></div>
+                    <div class="card-body travel-map-body">
+                        <ul class="list-group list-group-flush">
+                            {% for country in countries %}<li class="list-group-item"><div class="fflag fflag-{{ country.1 }} ff-sm"></div><span class="list-country">{{ country.0 }}</span></li>{% endfor %}
+                        </ul>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <span class="country-count-footer">Cards were sent to {% if countries_count == 0 or countries_count > 1 %}these <strong class="badge badge-primary badge-pill">{{ countries_count }}</strong> countries{% else %}this country{% endif %}.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col">
+                <h2 class="display-6">Statistics for All Cards Received</h2>
+            </div>
+            <div class="w-100"></div>
+            <div class="card-deck mx-auto">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center"><span>Cards Received</span></div>
+                    <div class="card-body align-items-center">
+                        <span class="card-statistic">{{  cards_received }}</span><span class="card-unit"> cards</span>
+                    </div>
+                    <div class="card-footer text-muted">The number of cards that have been received and their code entered.</div>
+                </div>
+                <div class="card">
+                    <div class="card-header d-flex align-items-center"><span>Top Speed</span></div>
+                    <div class="card-body align-items-center">
+                        <span class="card-statistic">{{  top_speed }}</span><span class="card-unit"> km/h</span>
+                    </div>
+                    <div class="card-footer text-muted">The fastest card's top speed.</div>
+                </div>
+                <div class="card">
+                    <div class="card-header d-flex align-items-center"><span>Average Speed</span></div>
+                    <div class="card-body align-items-center">
+                        <span class="card-statistic">{{  average_speed }}</span><span class="card-unit"> km/h</span>
+                    </div>
+                    <div class="card-footer text-muted">The average travel speed of the cards.</div>
+                </div>
+                <div class="card">
+                    <div class="card-header d-flex align-items-center"><span>Average Travel Time</span></div>
+                    <div class="card-body align-items-center">
+                        <span class="card-statistic">{{  average_travel_time }}</span><span class="card-unit"> days</span>
+                    </div>
+                    <div class="card-footer text-muted">The average time it took for card delivery.</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col footer">
+                <span class="text-muted">Hastily coded with love by Chris. Thanks for visiting! :)</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,282 @@
+{% load static %}
+body{
+    background-color: #FDFDFD;
+    background-image: url("images/checkered-light-emboss.png");
+    background-repeat: repeat;
+}
+
+h2 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.title {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    font-family: Mountains of Christmas;
+    font-size: 4rem;
+    text-shadow: 4px 4px 4px #aaa;
+}
+
+.welcome-text {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: lighter;
+}
+
+.errorlist {
+    display: none;
+}
+
+form {
+    margin-bottom: 1rem;
+}
+
+form label {
+    font-weight: 300;
+    font-size: 1.75rem;
+}
+
+.btn-primary {
+    background-color: #717d8a;
+    border-color: #717d8a;
+}
+
+.btn-primary:hover {
+    background-color: #c0ced7;
+    border-color: #c0ced7;
+    color: #717d8a;
+}
+
+.btn-primary:active {
+    background-color: #717d8a;
+    border-color: #717d8a;
+}
+
+.btn-primary:focus {
+    background-color: #717d8a;
+    border-color: #717d8a;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    background-color: #717d8a;
+    border-color: #717d8a;
+}
+
+.badge-primary{
+    background-color: #869987;
+}
+
+.card-deck {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.card-header {
+    min-height: 6rem;
+    background-color: #869987;
+    color: #fdfdfd;
+    font-size: 1.25rem;
+    font-weight: 800;
+    text-align: center;
+}
+
+.recipient-card-header {
+    background-color: #c84d4e;
+    font-size: 1.5rem;
+}
+
+.card-header span {
+    display: block;
+    width: 100%;
+}
+
+.card-body {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.travel-map-body {
+    padding: 0rem;
+}
+
+.travel-map {
+    width: 100%;
+}
+
+.card-statistic {
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: block;
+}
+
+.recipient-card-statistic {
+    font-size: 2rem;
+}
+
+.card-unit {
+    font-size: 1rem;
+    font-weight: 200;
+    font-style: italic;
+}
+
+.card-footer {
+    font-size: 1rem;
+    font-weight: 200;
+    min-height: 8rem;
+}
+
+.country-count-footer {
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.list-country {
+    margin-left: 0.5rem;
+}
+
+.recipient-card-footer {
+    font-size: 1.25rem;
+    min-height: 6rem;
+}
+
+.card-url {
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+    font-weight: 200;
+    font-style: italic;
+    text-align: center;
+}
+
+.footer {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.75rem;
+    text-align: center;
+    font-style: italic;
+    font-weight: 200;
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .welcome-text {
+        font-size: 1.25rem;
+        font-weight: lighter;
+        text-align: justify;
+    }
+    .card-header {
+        min-height: 5rem;
+    }
+
+    .card-footer {
+        min-height: 4rem;
+    }
+
+    .recipient-card-footer {
+        font-size: 1rem;
+    }
+
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .card-header {
+        min-height: 5rem;
+    }
+
+    .recipient-card-header {
+        font-size: 1rem;
+    }
+
+    .card-footer {
+        min-height: 4rem;
+    }
+
+    .recipient-card-footer {
+        font-size: 1rem;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .card-header {
+        padding: 0.75rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .card-body {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .card-statistic {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .card-unit {
+        font-size: 0.5rem;
+        font-weight: 200;
+        font-style: italic;
+    }
+
+    .card-footer {
+        padding: 0.75rem 1rem;
+        font-size: 0.4rem;
+    }
+
+    .recipient-card-footer {
+        font-size: 1rem;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .card-header {
+        padding: 0.75rem 1rem;
+        font-weight: 700;
+    }
+
+    .recipient-card-header {
+        font-size: 1.5rem;
+    }
+
+    .card-body {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .card-statistic {
+        font-size: 2.5rem;
+        font-weight: 600;
+    }
+
+    .card-unit {
+        font-size: 0.75rem;
+        font-weight: 200;
+        font-style: italic;
+    }
+
+    .card-footer {
+        padding: 0.75rem 1rem;
+        font-size: 0.75rem;
+        min-height: 5rem;
+    }
+
+    .recipient-card-footer {
+        font-size: 1rem;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+}

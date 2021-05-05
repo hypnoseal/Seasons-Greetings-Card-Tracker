@@ -1,0 +1,46 @@
+{%  extends 'card_tracker/index.html' %}
+{%  block section %}
+    <div class="col">
+        <h2 class="display-6">Statistics for Your Card!</h2>
+    </div>
+    <div class="w-100"></div>
+    <div class="card-deck mx-auto">
+        <div class="card">
+            <div class="card-header recipient-card-header d-flex align-items-center"><span>Travel Distance</span></div>
+            <div class="card-body align-items-center">
+                <span class="card-statistic recipient-card-statistic">{{  selected_card_distance }}</span><span class="card-unit"> km</span>
+            </div>
+            <div class="card-footer recipient-card-footer text-muted">Your card travelled this many kilometers.</div>
+        </div>
+        <div class="card">
+            <div class="card-header recipient-card-header d-flex align-items-center"><span>Travel Speed</span></div>
+            <div class="card-body align-items-center">
+                <span class="card-statistic recipient-card-statistic">{{  selected_card_travel_speed }}</span><span class="card-unit"> km/h</span>
+            </div>
+            <div class="card-footer recipient-card-footer text-muted">The average speed of your card while being delivered.</div>
+        </div>
+        <div class="card">
+            <div class="card-header recipient-card-header d-flex align-items-center"><span>Travel Time</span></div>
+            <div class="card-body align-items-center">
+                <span class="card-statistic recipient-card-statistic">{{  selected_card_travel_time }}</span><span class="card-unit"> days</span>
+            </div>
+            <div class="card-footer recipient-card-footer text-muted">Your card travelled for this long.</div>
+        </div>
+    </div>
+    <div class="w-100"></div>
+    <div class="card-deck mx-auto">
+        <div class="card">
+            <div class="card-header recipient-card-header d-flex align-items-center"><span>Travel Map</span></div>
+            <div class="card-body travel-map-body align-items-center">
+                <img class="travel-map" src="https://maps.googleapis.com/maps/api/staticmap?size=1000x500&scale=2&markers=color:green%7C{{ homebase_address }}&markers=color:red%7C{{ recipient_address }}&path=color:0x000000%7Cweight:3%7Cgeodesic:true%7C{{ homebase_address }}%7C{{ recipient_address }}&key={{ google_api_key }}" />
+            </div>
+            <div class="card-footer recipient-card-footer text-muted">Here's where your card started from (green) and finished at (red).</div>
+        </div>
+    <div class="w-100"></div>
+    </div>
+    <div class="row">
+        <div class="col card-url">
+            <span>Visit your card stats directly by going to this URL: <a href="/{{ card_id }}">{{ site_url }}/{{ card_id }}</a></span>
+        </div>
+    </div>
+{% endblock %}
