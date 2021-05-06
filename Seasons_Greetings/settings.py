@@ -144,5 +144,6 @@ STATICFILES_DIRS = [
 
 # Custom Global Variables
 
-GOOGLE_API_KEY = "AIzaSyCHOalgvVumt6hp5QRtjA59OC4w9DHtn2E"
+#Replace Google API Key with your own generated key from Google Cloud. Be certain to allow maps requests.
+GOOGLE_API_KEY = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 SITE_URL = "https://seasonsgreetings.cards"
